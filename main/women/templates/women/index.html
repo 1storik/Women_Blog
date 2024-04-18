@@ -1,0 +1,21 @@
+{% extends 'women/base.html' %}
+
+{% block content %}
+{#<h1>{{ title }}</h1>#}
+<ul class="list-articles">
+    {% for p in posts %}
+        <li><div class="article-panel">
+	<p class="first">Categories: {{p.cat}}</p>
+	<p class="last">Data: {{p.time_update|date:"d-m-Y H:i:s"}}</p>
+            </div>
+        {% if p.photo %}
+            <p><img height="310px" width="163px" src="{{ p.photo.url }}"></p>
+        {% endif %}
+        <li><h2>{{ p.title }}</h2>
+        <p>{{ p.content|truncatewords:50|linebreaks }}</p>
+        <div class="clear"></div>
+        <p class="link-read-post"><a href="{{ p.get_absolute_url }}">Read full</a></p>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
